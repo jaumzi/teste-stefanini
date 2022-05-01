@@ -5,7 +5,7 @@ var jwt = require('jsonwebtoken');
 const Cryptography = require('../util/Cryptography');
 const EnumCookies = require('../util/EnumCookies');
 const EnumPermission = require('../util/EnumPermission');
-const UserService = require('../repositories/UserService');
+const UserService = require('../domain/repositories/UserService');
 // const DatabaseService = require('../services/DatabaseService');
 
 const SystemParams = require('../util/SystemParams');

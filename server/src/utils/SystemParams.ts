@@ -1,4 +1,4 @@
-import fs from 'fs';
+import { readFile } from 'fs/promises';
 
 type SystemParamsProps = {
   salt: string,
@@ -12,7 +12,7 @@ class Params {
   protected params: SystemParamsProps = undefined;
 
   async load() {
-    const fileData = await fs.promises.readFile(__dirname +'../config/configs.json', 'utf8');
+    const fileData = await readFile(__dirname +'../config/configs.json', 'utf8');
     const result = JSON.parse(fileData);
     this.params = result;
   }

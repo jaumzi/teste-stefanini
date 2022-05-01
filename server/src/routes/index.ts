@@ -1,13 +1,14 @@
 import express from 'express';
+import { getAll } from '../controllers/ContaLegadoController';
 
 const ROUTES = express.Router();
 
-ROUTES.get('/', (request, response) => {
-  return response.json({ message: 'Hello World' })
+const API_PATH_V1 = '/api/v1';
+
+ROUTES.get(`/api/v1/`, (req, res) => {
+  res.status(200).json("Hello World")
 });
 
-ROUTES.post('/posts', (request, response) => {
-  return response.status(200).json({ message: 'New post' })
-});
+ROUTES.get(`${API_PATH_V1}/conta-legado/get-all`, getAll);
 
 export default ROUTES;

@@ -2,12 +2,13 @@
 
 
 
-## Instalar e rodar
+## Instalação
 
 Antes de iniciar o sistema execute os seguintes comandos:
-* `cd client`
-* `npm run install`
-* `npm run install:all`
+* Acesse a pasta`client` e execute `npm run install`
+* Acesse a pasta`server` e execute `npm run install`
 
-Para rodar o sistema execute o comando `npm start` e aguarde o navegador abrir
+## Executar
+
+Para executar o sistema execute o comando `npm start` e aguarde o navegador abrir
 
