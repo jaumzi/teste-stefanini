@@ -1,37 +1,70 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
 import { AccountService } from '../../services/account/account.service';
-// import { DataTableDirective } from 'angular-datatables';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  // @ViewChild(DataTableDirective, { static: false })
+  dtOptions: DataTables.Settings = {};
 
-  data = [];
+  dtData = [];
+  selectData?: any;
 
   constructor(private accountService: AccountService) {
 
+    this.dtOptions = {
+      responsive: true,
+      columns: [
+        { title: "Data do lançamento", data: 'dataLancamentoContaCorrenteCliente' },
+        { title: "Descrição", data: 'lancamentoContaCorrenteCliente.nomeTipoOperacao' },
+        { title: "Número", data: 'lancamentoContaCorrenteCliente.numeroRemessaBanco' },
+        { title: "Situação", data: 'lancamentoContaCorrenteCliente.nomeSituacaoRemessa' },
+        { title: "Data de confirmação", data: 'dataEfetivaLancamento' },
+        {
+          title: "Dados bancários",
+          data: null,
+          render: (row: any) => {
+            const dadosBanco = row.lancamentoContaCorrenteCliente.dadosDomicilioBancario;
+            return `${row.nomeBanco} ${dadosBanco.numeroAgencia} CC ${dadosBanco.numeroContaCorrente}`;
+          }
+        },
+        { title: "Valor final", data: 'valorLancamentoRemessa' },
+      ],
+      rowCallback: (row: Node, data: any[] | Object, index: number) => {
+        const self = this;
+        $('td', row).off('click');
+        $('td', row).on('click', () => {
+          self.selectData = {
+            row: data,
+            graphic: {
+              // adicionar dados necessarios pra renderizar o grafico
+            }
+          };
+        });
+        return row;
+      },
+      ajax: (dataTablesParameters: any, callback = (obj: any) => {}) => {
+        this.getDataInApi((res) => {
+          callback({
+            recordsTotal: res.totalElements,
+            pageLength: res.tamanhoPagina,
+            data: res.listaControleLancamento
+          });
+        });
+      },
+    };
   }
 
   ngOnInit(): void {
-    this.accountService.getAllUsers().subscribe((response: any)=> {
-      this.data = response;
-      console.log(response);
+
+  }
+
+  getDataInApi(callback = (res: any) => {}) {
+    this.accountService.getAllUsers().subscribe((response: any) => {
+      this.dtData = response;
+      callback(response);
     });
   }
 
-  ngOnDestroy(): void {
-    // We remove the last function in the global ext search array so we do not add the fn each time the component is drawn
-    // /!\ This is not the ideal solution as other components may add other search function in this array, so be careful when
-    // handling this global variable
-    // $.fn['dataTable'].ext.search.pop();
-  }
-
-  filterById(): void {
-    // this.datatableElement.dtInstance.then((dtInstance: DataTables.Api) => {
-    //   dtInstance.draw();
-    // });
-  }
 }
