@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ApiVersionEnum } from 'src/models/ApiVersionEnum';
+import { ApiVersionEnum } from 'src/app/models/ApiVersionEnum';
 
 @Injectable({
   providedIn: 'root'

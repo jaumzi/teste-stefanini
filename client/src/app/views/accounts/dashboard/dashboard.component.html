@@ -1,0 +1,15 @@
+<div class="container" >
+  <lib-table
+    [tableData]="tableData"
+    [tableColumns]="tableColumns"
+    (selectRow)="handleSelectData($event)"
+
+    [tableColumnsDetailRowRef]="detailsInTable"
+  >
+  </lib-table>
+</div>
+
+<ng-template #detailsInTable>
+  {{ selectData.description }}
+  <!-- cria um grafico aqui -->
+</ng-template>

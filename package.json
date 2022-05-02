@@ -1,0 +1,23 @@
+{
+  "name": "teste-stefanini",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "install:all": "npm run install:client & npm run install:server",
+    "install:client": "cd ./server & npm install",
+    "install:server": "cd ./client & npm install",
+    "start:server": "cd ./server & npm run start",
+    "start:client": "cd ./client & npm run start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jaumzi/teste-stefanini.git"
+  },
+  "author": "João Vitor Ribeiro",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jaumzi/teste-stefanini/issues"
+  },
+  "homepage": "https://github.com/jaumzi/teste-stefanini#readme"
+}

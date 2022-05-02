@@ -1,14 +1,20 @@
 # TesteStefanini
+Sistema desenvolvido para teste qualificatório na Stefanini com dev Frontend, utilizando as tecnologias: Angular 13 e Node JS.
 
 
+### Prepare your environment
 
-## Instalação
+- Instale [Node.js](http://nodejs.org/)
 
-Antes de iniciar o sistema execute os seguintes comandos:
-* Acesse a pasta`client` e execute `npm run install`
-* Acesse a pasta`server` e execute `npm run install`
+### Instalação
 
-## Executar
+Antes de iniciar o sistema execute o comando: `npm run install:all`
 
-Para executar o sistema execute o comando `npm start` e aguarde o navegador abrir
+### Executar
+
+Para executar o backend, abra uma janela do terminal na pasta raiz do projeto e execute o comando `npm run start:server`.
+O servidor irá rodar na porta `http://localhost:5000`.
+
+Para executar o frontend, abra uma janela do terminal na pasta raiz do projeto e execute o comando `npm run start:client` e aguarde o navegador abrir.
+Agora acesse a seguinte rota [`/accounts/dashboard`](http://localhost:4200/accounts/dashboard).
 
