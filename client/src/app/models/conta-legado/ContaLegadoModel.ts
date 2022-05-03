@@ -1,4 +1,5 @@
-import { BaseModel } from "./BaseModel";
+
+import { BaseModel } from "../base/BaseModel";
 import { ControleLancamentoModel } from "./ControleLancamentoModel";
 import { TotalControleLancamentoModel } from "./TotalControleLancamentoModel";
 

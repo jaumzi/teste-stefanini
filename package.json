@@ -2,7 +2,6 @@
   "name": "teste-stefanini",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "install:all": "npm run install:client & npm run install:server",
     "install:client": "cd ./server & npm install",

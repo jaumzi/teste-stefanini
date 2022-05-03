@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ApiVersionEnum } from 'src/app/models/ApiVersionEnum';
+import { Observable } from 'rxjs';
+import { ApiVersionEnum } from 'src/app/models/enum-api-version/ApiVersionEnum';
+import { ContaLegadoModel } from 'src/app/models/conta-legado/ContaLegadoModel';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +13,8 @@ export class AccountService {
 
   constructor(private http: HttpClient) { }
 
-  getAllUsers(apiVersion: ApiVersionEnum = ApiVersionEnum.v1) {
+  getAllUsers(apiVersion: ApiVersionEnum = ApiVersionEnum.V1): Observable<ContaLegadoModel> {
     const url = `${this.serverUrl}/api/${apiVersion}/conta-legado/get-all`;
-    return this.http.get(url);
+    return this.http.get<ContaLegadoModel>(url);
   }
 }

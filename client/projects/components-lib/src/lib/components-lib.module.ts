@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { GraphicModule } from './graphic/graphic.module';
 import { TableModule } from './table/table.module';
+import { PaginatorComponent } from './paginator/paginator.component';
+import { PaginatorModule } from './paginator/paginator.module';
 
 
 
@@ -9,11 +11,13 @@ import { TableModule } from './table/table.module';
   ],
   imports: [
     TableModule,
-    GraphicModule
+    GraphicModule,
+    PaginatorModule
   ],
   exports: [
     TableModule,
-    GraphicModule
+    GraphicModule,
+    PaginatorModule
   ]
 })
 export class ComponentsLibModule { }

@@ -6,10 +6,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 const routes: Routes = [
   {
     path: 'accounts',
+    component: AccountsComponent,
     children: [
       { path: 'dashboard', loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule) },
-      // { path: '/', loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule) }
-      // { path: 'dashboard', component: DashboardComponent }
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: '**', redirectTo: 'dashboard' }
     ]

@@ -2,13 +2,14 @@
   "name": "teste-stefanini2",
   "version": "0.0.0",
   "scripts": {
+    "clear": "rimraf dist",
     "wait-lib": "wait-on dist/components-lib/components-lib.d.ts",
     "ng": "ng",
     "test": "ng test",
-    "start": "run-p build-watch:lib serve:app",
+    "start": "npm run clear & run-p build-watch:lib serve:app",
     "build-watch:lib": "ng build components-lib --watch --configuration development",
     "serve:app": "npm run wait-lib & ng serve --open",
-    "build": "npm run build:lib & npm run build:app",
+    "build": "npm run clear & run-p build:lib & npm run build:app",
     "build:app": "npm run wait-lib & ng build",
     "build:lib": "ng build components-lib"
   },
@@ -25,6 +26,7 @@
     "@angular/platform-browser-dynamic": "~13.3.0",
     "@angular/router": "~13.3.0",
     "chart.js": "^3.7.1",
+    "chartjs-plugin-datalabels": "^2.0.0",
     "ng2-charts": "^3.0.10",
     "npm-run-all": "^4.1.5",
     "rxjs": "~7.5.0",
@@ -35,6 +37,7 @@
     "@angular-devkit/build-angular": "~13.3.3",
     "@angular/cli": "~13.3.3",
     "@angular/compiler-cli": "~13.3.0",
+    "@types/chart.js": "^2.9.37",
     "@types/jasmine": "~3.10.0",
     "@types/node": "^12.11.1",
     "jasmine-core": "~4.0.0",
@@ -44,6 +47,7 @@
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
     "ng-packagr": "^13.0.0",
+    "rimraf": "^3.0.2",
     "typescript": "~4.6.2",
     "wait-on": "^6.0.1"
   }

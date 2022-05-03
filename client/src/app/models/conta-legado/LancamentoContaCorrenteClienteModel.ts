@@ -1,4 +1,4 @@
-import { BaseModel } from "./BaseModel";
+import { BaseModel } from "../base/BaseModel";
 import { DadosDomicilioBancarioModel } from "./DadosDomicilioBancarioModel";
 
 export type LancamentoContaCorrenteClienteModel = {

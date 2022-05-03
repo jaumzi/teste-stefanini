@@ -1,15 +1,42 @@
-<div class="container" >
-  <lib-table
-    [tableData]="tableData"
-    [tableColumns]="tableColumns"
-    (selectRow)="handleSelectData($event)"
+<div class="container">
+  <div class="cards-container-dashboard">
+    <mat-card class="cards-dashboard card-quantityShipments">
+      <b>Remessas</b>
+      <span class="info">
+        {{ cardsValue?.quantidadeRemessas }}
+      </span>
+    </mat-card>
+    <mat-card class="cards-dashboard card-numberOfLaunches">
+      <b>Lancamentos</b>
+      <span class="info">
+        {{ cardsValue?.quantidadeLancamentos }}
+      </span>
+    </mat-card>
+    <mat-card class="cards-dashboard card-valueLaunches">
+      <b>Valor total de lancamentos</b>
+      <span class="info">
+        {{ cardsValue?.valorLancamentos | CustomCurrency }}
+      </span>
+    </mat-card>
+  </div>
+</div>
 
-    [tableColumnsDetailRowRef]="detailsInTable"
-  >
+<div class="container">
+  <lib-table [tableData]="tableData" [tableColumns]="tableColumns" [mapTableColumns]="mapTableColumns"
+    (selectRow)="handleSelectData($event)" [tableColumnsDetailRowRef]="detailsInTable" [paginateOptions]="paginateOptions" >
   </lib-table>
 </div>
 
 <ng-template #detailsInTable>
-  {{ selectData.description }}
-  <!-- cria um grafico aqui -->
+  <div *ngIf="selectData" class="details-table-container" >
+    <div *ngIf="selectData?.graphic">
+      <lib-graphic [data]="selectData.graphic.data" [options]="selectData.graphic.options"
+        [type]="selectData.graphic.type">
+      </lib-graphic>
+    </div>
+    <div class="details-table-info" >
+      <span *ngIf="selectData.row.situacao === 'Pago'">Este lançamento representa {{ selectData.graphic.data.datasets[0].data[0] }}% do valor total de lançamentos.</span>
+      <span *ngIf="selectData.row.situacao !== 'Pago'">Caso este lançamento seja efetivado poderá representar um aumento de {{ selectData.graphic.data.datasets[0].data[0] }}% no valor total de lançamentos.</span>
+    </div>
+  </div>
 </ng-template>

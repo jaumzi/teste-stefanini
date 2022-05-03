@@ -1,12 +1,14 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { MatSort, Sort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { LiveAnnouncer } from '@angular/cdk/a11y';
+import { MatPaginator } from '@angular/material/paginator';
 
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-  description: string;
+interface PaginateOptions {
+  currentPage: number;
+  totalItems: number;
+  elementsPerPage: number;
 }
 
 
@@ -23,27 +25,60 @@ export interface PeriodicElement {
   ],
 })
 export class TableComponent implements OnInit {
+  @ViewChild(MatSort) sort: MatSort | null = null;
+  @ViewChild(MatPaginator) paginator: MatPaginator | null = null;
 
-  @Input() tableData: PeriodicElement[] = [];
+  @Input() tableData: any[] = [];
   @Input() tableColumns: string[] = [];
+  @Input() mapTableColumns: any = {};
   @Input() tableColumnsDetailRowRef: any;
+  @Input() paginateOptions?: PaginateOptions;
 
-  @Output('selectRow') selectRowChange: EventEmitter<PeriodicElement | null> = new EventEmitter<PeriodicElement | null>();
-  expandedElement: PeriodicElement | null = null;
+  @Output('selectRow') selectRowChange: EventEmitter<any | null> = new EventEmitter<any | null>();
+  expandedElement: any | null = null;
+  realTableData?: any;
 
-  constructor() { }
+  constructor(private _liveAnnouncer: LiveAnnouncer) { }
 
   ngOnInit(): void {
   }
 
-  setExpandedElement(el: PeriodicElement) {
-    if (this.expandedElement === el) {
-      this.expandedElement = null;
-    } else {
-      this.expandedElement = el;
+  ngAfterViewInit() {
+  }
+
+  setSortInDataSource() {
+    this.realTableData = undefined;
+
+    if (this.tableData) {
+      this.realTableData = new MatTableDataSource(this.tableData);
+      this.realTableData.sort = this.sort;
     }
 
-    this.selectRowChange.emit(this.expandedElement);
+    return this.realTableData;
+  }
+
+  /** Announce the change in sort state for assistive technology. */
+  announceSortChange(sortState: Sort) {
+    // This example uses English messages. If your application supports
+    // multiple language, you would internationalize these strings.
+    // Furthermore, you can customize the message to add additional
+    // details about the values being sorted.
+    if (sortState.direction) {
+      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
+    } else {
+      this._liveAnnouncer.announce('Sorting cleared');
+    }
+  }
+
+  setExpandedElement(el: any | null) {
+    let newExpandedElement: any | null = null;
+
+    if (this.expandedElement !== el) {
+      newExpandedElement = el;
+    }
+
+    this.expandedElement = newExpandedElement;
+    this.selectRowChange.emit(newExpandedElement);
   }
 
 }

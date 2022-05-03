@@ -5,7 +5,7 @@ const ROUTES = express.Router();
 
 const API_PATH_V1 = '/api/v1';
 
-ROUTES.get(`/api/v1/`, (req, res) => {
+ROUTES.get(`${API_PATH_V1}/`, (req, res) => {
   res.status(200).json("Hello World")
 });
 

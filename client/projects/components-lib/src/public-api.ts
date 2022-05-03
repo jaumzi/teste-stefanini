@@ -8,3 +8,5 @@ export * from './lib/table/table.component';
 export * from './lib/table/table.module';
 export * from './lib/graphic/graphic.component';
 export * from './lib/graphic/graphic.module';
+export * from './lib/paginator/paginator.component';
+export * from './lib/paginator/paginator.module';

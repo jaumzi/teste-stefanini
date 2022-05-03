@@ -1,9 +1,7 @@
 import { readFile } from "fs/promises";
 import { ContaLegadoModel } from "../models/ContaLegadoModel";
-import { BaseRepository } from "./BaseRepository";
 
-
-export default class ContaLegadoRepository implements BaseRepository<ContaLegadoModel> {
+export default class ContaLegadoRepository {
   constructor() {
   }
 

@@ -1,0 +1,4 @@
+<mat-paginator *ngIf="paginateOptions" showFirstLastButtons aria-label="Selecione quantidade de linhas na tabela"
+  [length]="paginateOptions.totalItems" [pageSize]="paginateOptions.elementsPerPage"
+  [pageIndex]="paginateOptions.currentPage">
+</mat-paginator>
