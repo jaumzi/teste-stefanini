@@ -28,6 +28,7 @@ export class DashboardComponent implements OnInit {
   mapTableColumns: any = {};
   paginateOptions?: PaginateOptions;
   selectData?: any;
+  dataLoadedInApi = false;
 
   columns: { id: string, title: string }[] = [
     {
@@ -104,7 +105,11 @@ export class DashboardComponent implements OnInit {
           valorFinal: toPrince(lancamento.valorLancamentoRemessa),
           valorFinalValue: lancamento.valorLancamentoRemessa
         }
-      })
+      });
+
+      setTimeout(() => { // simular demora da api
+        this.dataLoadedInApi = true;
+      }, 3000);
     });
   }
 

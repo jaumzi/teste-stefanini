@@ -4,10 +4,24 @@
   width: 100%;
   max-width: 60%;
 }
+.container-loading {
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 .cards-container-dashboard {
   display: flex;
   align-items: center;
+  padding: 0px;
+  margin-top: 20px !important;
+  grid-gap: 12px;
+}
+.cards-container-dashboard-loading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   padding: 0px;
   margin-top: 20px !important;
   grid-gap: 12px;
